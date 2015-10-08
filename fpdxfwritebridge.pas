@@ -427,7 +427,7 @@ type
         TextStyleList: TList;
         DimStyleList: TList;
 
-        procedure ProduceEntity(selectLayer: string);
+        procedure Produce(selectLayer: string);
         procedure DoProduceDXFEntity(out entityDXF: string);
 
         procedure DoProduceDXFBlock(out blockDXF: string);
@@ -2478,11 +2478,13 @@ end;
 
 procedure TFPDxfWriteBridge.DoProduceDXFEntity(out entityDXF: string);
 begin
+  entityDXF:='';
   if Assigned(FOnProduceEntity) then FOnProduceEntity(entityDXF);
 end;
 
 procedure TFPDxfWriteBridge.DoProduceDXFBlock(out blockDXF: string);
 begin
+  blockDXF:='';
   if Assigned(FOnProduceBlock) then FOnProduceBlock(blockDXF);
 end;
 
@@ -2492,12 +2494,16 @@ begin
    ToDxf.SaveToFile(path);
 end;
 
-procedure TFPDxfWriteBridge.ProduceEntity(selectLayer: string);
+procedure TFPDxfWriteBridge.Produce(selectLayer: string);
 var
   i: integer;
-  strDXF: string;
+  strDXFEntity, strDXFBlock: string;
 begin
+
+     strDXFEntity:='';
+     strDXFBlock:='';
      RestrictedLayer:= selectLayer;
+
      DxfBegin;
           BeginTables;
             BeginTable('LTYPE', LineTypeList.Count);  //follow 'count' table
@@ -2537,22 +2543,22 @@ begin
                                                     TDxfDimStyle(DimStyleList.Items[i]).TextColor,
                                                     TDxfDimStyle(DimStyleList.Items[i]).TextHeight);
                end;
-               {
+               (*
                  AddTableDimStyle('DIM1', 0.1800{arrwSize}, 0.0625{arrwWidth} , 2{color}, 0.1800 {0.25});
                  AddTableDimStyle('GENERIC',0,0,0,0);
-               }
+               *)
             EndTable;
 
           EndTables;
           BeginBlocks;
-              DoProduceDXFBlock(strDXF);
-              AddBlock(Trim(strDXF));
+              DoProduceDXFBlock(strDXFBlock{out});
+              if  strDXFBlock <> '' then AddBlock(Trim(strDXFBlock));
           EndBlocks;
           BeginEntities;
-              DoProduceDXFEntity(strDXF{out});
-              AddEntity(Trim(strDXF));
+              DoProduceDXFEntity(strDXFEntity{out});
+              if  strDXFEntity <> '' then  AddEntity(Trim(strDXFEntity));
           EndEntities;
-     DxfEnd;; //End DXF File!;
+     DxfEnd; //End DXF File!;
      //SaveToFile(nameFileDXF);
 end;
 

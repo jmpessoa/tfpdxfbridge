@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Package Version="4">
     <PathDelim Value="\"/>
@@ -9,14 +9,8 @@
       <SearchPaths>
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
-      <Other>
-        <CompilerMessages>
-          <MsgFileName Value=""/>
-        </CompilerMessages>
-        <CompilerPath Value="$(CompPath)"/>
-      </Other>
     </CompilerOptions>
-    <Files Count="4">
+    <Files Count="3">
       <Item1>
         <Filename Value="fpdxfwritebridge.pas"/>
         <UnitName Value="FPDxfWriteBridge"/>
@@ -26,14 +20,10 @@
         <Type Value="LRS"/>
       </Item2>
       <Item3>
-        <Filename Value="geometryutilsbridge.pas"/>
-        <UnitName Value="GeometryUtilsBridge"/>
-      </Item3>
-      <Item4>
         <Filename Value="regdxfbridge.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="regdxfbridge"/>
-      </Item4>
+      </Item3>
     </Files>
     <Type Value="RunAndDesignTime"/>
     <RequiredPkgs Count="2">
@@ -50,5 +40,8 @@
     <PublishOptions>
       <Version Value="2"/>
     </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
   </Package>
 </CONFIG>

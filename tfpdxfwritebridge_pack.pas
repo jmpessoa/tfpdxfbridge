@@ -7,7 +7,7 @@ unit tfpdxfwritebridge_pack;
 interface
 
 uses
-  FPDxfWriteBridge, GeometryUtilsBridge, regdxfbridge, LazarusPackageIntf;
+  FPDxfWriteBridge, regdxfbridge, LazarusPackageIntf;
 
 implementation
 

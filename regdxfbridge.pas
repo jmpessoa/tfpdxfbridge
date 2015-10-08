@@ -19,8 +19,4 @@ begin
   RegisterComponents('Graphics Bridges',[TFPDXFWriteBridge]);
 end;
 
-initialization
-
 end.
-
-end;
